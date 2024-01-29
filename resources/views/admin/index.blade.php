@@ -117,6 +117,8 @@
                                 <img src="{{ asset('project/image/' . $meta[4]->value . '?t=').mt_rand() }}" alt="" style="width: 100%; border-radius: 27px;" />
                             </a>
                         </div>
+						<div style="font-size: 17px;">Test Web Programmer</div>
+						<div style="font-size: 17px;">Pemadam Provinsi DKI Jakarta</div>
                         <div class="login-signin">
                             <form id="kt_login_signin_form">
                                 <input type="hidden" name="_method" id="_method">
