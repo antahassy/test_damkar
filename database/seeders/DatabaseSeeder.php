@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             tb_admin_rel_group::class,
             tb_admin_menu::class,
             tb_admin_setting::class,
+            tb_bantuan_anggota::class,
+            tb_bantuan_piket::class,
         ]);
     }
 }

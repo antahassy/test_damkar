@@ -7,6 +7,8 @@ use App\Http\Controllers\A_admin;
 use App\Http\Controllers\A_menu;
 use App\Http\Controllers\A_group;
 use App\Http\Controllers\A_setting;
+use App\Http\Controllers\A_kelompok;
+use App\Http\Controllers\A_apel;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +49,9 @@ Route::group(['middleware' => 'admin_session'], function() {
 	Route::get('admin_logout', [A_login::class, 'logout']);
 
 	Route::get('test_api', [A_dashboard::class, 'test_api']);
+
+	Route::resource('p_kelompok', A_kelompok::class);
+	Route::post('p_kelompok/cek_tanggal_absen', [A_kelompok::class, 'cek_tanggal_absen']);
+
+	Route::resource('p_apel', A_apel::class);
 });

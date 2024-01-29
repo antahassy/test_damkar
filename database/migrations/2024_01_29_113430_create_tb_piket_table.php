@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_bantuan_piket', function (Blueprint $table) {
+        Schema::create('tb_piket', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_anggota')->default('0');
             $table->date('tanggal');
             $table->string('piket')->default('');
+            $table->string('keterangan')->default('');
             $table->string('created_by')->default('');
             $table->string('updated_by')->default('');
             $table->string('deleted_by')->default('');
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_bantuan_piket');
+        Schema::dropIfExists('tb_piket');
     }
 };

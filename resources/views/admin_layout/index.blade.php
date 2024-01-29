@@ -279,6 +279,10 @@
             background: rgb(25,25,25);
             color: #007bff;
         }
+        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover{
+            background-color: silver !important;
+            color: rgb(25,25,25) !important;
+        }
         textarea{
             border: 1px solid #7E8299 !important;
         }
