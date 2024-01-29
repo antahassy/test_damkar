@@ -40,8 +40,7 @@
                                         <tr>
                                             <td style="border-bottom-color: transparent !important;">Tanggal</td>
                                             <td style="border-bottom-color: transparent !important;">
-                                            <input style="font-size: 16px;" type="text" name="tanggal" id="tanggal" class="form-control" readonly="" value="{{ $today }}">
-                                                
+                                                <input style="font-size: 16px;" type="text" name="tanggal" id="tanggal" class="form-control" readonly="" value="{{ $today }}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -82,13 +81,7 @@
                                     </thead>
                                 </table>
                                 <center id="submit_content" style="display: none;">
-                                    <?php
-                                        if($id_group == '2'){   
-                                            echo '<button type="button" class="btn btn-sm" id="btn_process" style="font-weight: 800;">Submit</button>';
-                                        }else{
-                                            echo '';
-                                        }
-                                    ?>
+                                    <button type="button" class="btn btn-sm" id="btn_process" style="font-weight: 800;">Submit</button>
                                 </center>
                             </div>
                         </div>
