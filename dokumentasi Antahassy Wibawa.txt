@@ -1,0 +1,33 @@
+Test aplikasi web programmer untuk pemadam provinsi jakarta dapat dijalankan pada situs
+http://test.antahassy.kencanasnack.com
+
+akses login
+username : administrator (role super admin)
+password : antahassywibawa
+
+username : pemimpin_kelompok (role pemimpin kelompok)
+password : 123456
+
+username : pemimpin_apel (role pemimpin apel)
+password : 123456
+
+Test aplikasi dibuat menggunakan framework PHP laravel versi 9
+UI yang dibuat adalah template hasil buatan sendiri tanpa plagiat (copy paste) dari pihak lain
+
+Dalam development, ditambahkan 1 tabel "tb_piket" atas ide inspirasi sendiri
+"tb_piket" ditambahkan bertujuan untuk menyimpan record hasil submit dari menu pemimpin kelompok
+
+tanggal mulai disetting pada 1 januari 2024 (bila diakses oleh pemimpin_apel)
+tanggal mulai diambil dari row pertama yang diurutkan berdasarkan kolom tanggal pada tabel "tb_bantuan_piket"
+
+melihat soal pada https://pemadam.jakarta.go.id/soal/Soal-SI-2024.pdf
+untuk poin ke 2 jika login sebagai pemimpin_kelompok, hanya dapat submit untuk hari ini saja 
+tetapi bila login sebagai pemimpin_apel, dapat melakukan submit berdasarkan tanggal yang dipilih
+
+untuk membuat sistem yang dinamis, pada menu pemimpin kelompok,
+tampilan nama-nama kelompok diambil dari db pd tabel "tb_bantuan_anggota"
+tidak mengubah urutan bila tanggal yang dipilih berbeda - beda
+
+Akses menu pemimpin_kelompok setelah login : dashboard, pemimpin kelompok
+Akses menu pemimpin_apel setelah login : dashboard, pemimpin kelompok, dan pemimpin apel
+Akses administrator : semua menu
