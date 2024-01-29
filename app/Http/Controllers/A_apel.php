@@ -34,7 +34,42 @@ class A_apel extends Controller
                     array_push($akses_temp, $key->akses);
                 }
                 if (in_array('1', $akses_temp)){
-                    return view('admin.apel')->with('active_menu', 'Apel')->with('akses_menu', $akses_temp);
+                    $month_format = array (1 => 
+                        'Januari',
+                        'Februari',
+                        'Maret',
+                        'April',
+                        'Mei',
+                        'Juni',
+                        'Juli',
+                        'Agustus',
+                        'September',
+                        'Oktober',
+                        'November',
+                        'Desember'
+                    );
+                    $now = date('Y-m-d');
+                    $s_now = explode('-', $now);
+                    $today = $s_now[2] . ' ' . $month_format[(int)$s_now[1]] . ' ' . $s_now[0];
+
+                    $date_range = DB::table('tb_bantuan_piket')
+                    ->select(
+                        'tb_bantuan_piket.tanggal'
+                    )
+                    ->where('tb_bantuan_piket.deleted_at', null)
+                    ->orderBy('tb_bantuan_piket.tanggal', 'asc')
+                    ->get();
+
+                    if($request->ajax()){
+                        return response()->json($date_range);
+                    }
+
+                    return view('admin.apel')
+                    ->with('active_menu', 'Apel')
+                    ->with('akses_menu', $akses_temp)
+                    ->with('id_group', $sess_id_group)
+                    ->with('today', $today)
+                    ->with('date_range', $date_range);
                 }else{
                     return view('unauthorized');
                 }
@@ -108,5 +143,110 @@ class A_apel extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function data_result(Request $request){
+        $month_format = array (
+            'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+        $tgl = $request->tanggal;
+        $s_tgl = explode(' ', $tgl);
+        $month_number = array_search($s_tgl[1], $month_format) + 1;
+        if(strlen($tgl) == 1){
+            $date = $s_tgl[2] . '-0' . $month_number . '-' . $s_tgl[0]; 
+        }else{
+            $date = $s_tgl[2] . '-' . $month_number . '-' . $s_tgl[0];
+        }
+
+        $data = DB::table('tb_bantuan_piket')->select('piket')->orderBy('piket', 'asc')->get();
+        foreach ($data as $row) {
+            $row->jumlah = $users = DB::table('tb_piket')->where('piket', $row->piket)->count();
+            // $data = DB::table('tb_piket')
+            // ->select(
+            //     DB::raw('count(*) as jumlah'),
+            //     'piket'
+            // )
+            // ->where('tanggal', $date)
+            // ->groupBy('piket')
+            // ->get();
+        }
+        
+        if($data){
+            foreach ($data as $row) {
+                if($row->piket == 'A'){
+                    $row->text = 'Total Piket Hadir';
+                }
+                if($row->piket == 'B'){
+                    $row->text = 'Total Cadangan Piket';
+                }
+                if($row->piket == 'C'){
+                    $row->text = 'Total Lepas Piket';
+                }
+                if($row->piket == 'D'){
+                    $row->text = 'Total Tidak Hadir';
+                }
+            }
+        }
+        return response()->json($data);
+    }
+
+    public function data_detail(Request $request){
+        $month_format = array (
+            'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+        $tgl = $request->tanggal;
+        $s_tgl = explode(' ', $tgl);
+        $month_number = array_search($s_tgl[1], $month_format) + 1;
+        if(strlen($tgl) == 1){
+            $date = $s_tgl[2] . '-0' . $month_number . '-' . $s_tgl[0]; 
+        }else{
+            $date = $s_tgl[2] . '-' . $month_number . '-' . $s_tgl[0];
+        }
+
+        $group_piket = $request->piket;
+        $data = DB::table('tb_piket')
+        ->select(
+            'tb_piket.keterangan',
+            'tb_piket.piket',
+            'tb_bantuan_anggota.nama',
+            'tb_bantuan_anggota.jabatan'
+        )
+        ->where('tb_piket.tanggal', $date)
+        ->where('tb_piket.piket', $group_piket)
+        ->leftJoin('tb_bantuan_anggota', 'tb_piket.id_anggota', '=', 'tb_bantuan_anggota.id')
+        ->orderBy('tb_piket.id', 'asc')
+        ->get();
+
+        if($data){
+            foreach ($data as $row) {
+                if($row->keterangan == ''){
+                    $row->keterangan = '-';
+                }
+            }
+        }
+
+        return response()->json($data);
     }
 }

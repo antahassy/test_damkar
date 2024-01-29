@@ -17,38 +17,26 @@ class tb_bantuan_piket extends Seeder
     {
         DB::table('tb_bantuan_piket')->insert([
             [
-                'tanggal' 			=> '2023-06-20',
+                'tanggal' 			=> '2024-01-01',
                 'piket' 			=> 'A',
                 'created_by'        => 'System',
                 'created_at'		=> date('Y-m-d H:i:s')
             ],
             [
-                'tanggal' 			=> '2023-06-21',
+                'tanggal' 			=> '2024-01-02',
                 'piket' 			=> 'B',
                 'created_by'        => 'System',
                 'created_at'		=> date('Y-m-d H:i:s')
             ],
             [
-                'tanggal' 			=> '2023-06-22',
+                'tanggal' 			=> '2024-01-03',
                 'piket' 			=> 'C',
                 'created_by'        => 'System',
                 'created_at'		=> date('Y-m-d H:i:s')
             ],
             [
-                'tanggal' 			=> '2023-06-23',
-                'piket' 			=> 'A',
-                'created_by'        => 'System',
-                'created_at'		=> date('Y-m-d H:i:s')
-            ],
-            [
-                'tanggal' 			=> '2023-06-24',
-                'piket' 			=> 'B',
-                'created_by'        => 'System',
-                'created_at'		=> date('Y-m-d H:i:s')
-            ],
-            [
-                'tanggal' 			=> '2023-06-25',
-                'piket' 			=> 'C',
+                'tanggal' 			=> '2024-01-04',
+                'piket' 			=> 'D',
                 'created_by'        => 'System',
                 'created_at'		=> date('Y-m-d H:i:s')
             ]

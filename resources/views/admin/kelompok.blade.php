@@ -31,22 +31,17 @@
                 <div class="col-lg-12 col-xxl-4 order-1 order-xxl-2">
                     <div class="card card-custom card-stretch gutter-b">
                         <div class="card-header border-0">
-                            <h3 class="card-title font-weight-bolder text-dark">Daftar {{ $active_menu }}</h3>
+                            <h3 class="card-title font-weight-bolder text-dark">Daftar Nama {{ $active_menu }}</h3>
                         </div>
                         <div class="card-body pt-0">
                             <div class="col-md-12">
                                 <form id="form_data">
-                                    <table>
+                                    <table style="font-size: 16px;">
                                         <tr>
                                             <td style="border-bottom-color: transparent !important;">Tanggal</td>
                                             <td style="border-bottom-color: transparent !important;">
-                                                <?php
-                                                    if($id_group == '2'){   
-                                                        echo '<input type="text" name="tanggal" id="tanggal" class="form-control" readonly="" value="' . $today . '">';
-                                                    }else{
-                                                        echo '<input type="text" name="tanggal" id="tanggal" class="form-control" readonly="" value="">';
-                                                    }
-                                                ?>
+                                            <input style="font-size: 16px;" type="text" name="tanggal" id="tanggal" class="form-control" readonly="" value="{{ $today }}">
+                                                
                                             </td>
                                         </tr>
                                         <tr>

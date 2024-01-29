@@ -54,4 +54,6 @@ Route::group(['middleware' => 'admin_session'], function() {
 	Route::post('p_kelompok/cek_tanggal_absen', [A_kelompok::class, 'cek_tanggal_absen']);
 
 	Route::resource('p_apel', A_apel::class);
+	Route::post('p_apel/data_result', [A_apel::class, 'data_result']);
+	Route::post('p_apel/data_detail', [A_apel::class, 'data_detail']);
 });
