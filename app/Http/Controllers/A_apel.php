@@ -170,19 +170,24 @@ class A_apel extends Controller
         }
 
         $data = DB::table('tb_bantuan_piket')->select('piket')->orderBy('piket', 'asc')->get();
-        foreach ($data as $row) {
-            $row->jumlah = $users = DB::table('tb_piket')->where('piket', $row->piket)->count();
-            // $data = DB::table('tb_piket')
-            // ->select(
-            //     DB::raw('count(*) as jumlah'),
-            //     'piket'
-            // )
-            // ->where('tanggal', $date)
-            // ->groupBy('piket')
-            // ->get();
+        $data_piket = DB::table('tb_piket')->where('tanggal', $date)->get();
+        if(count($data_piket) != 0){
+            foreach ($data as $row) {
+                $row->jumlah = DB::table('tb_piket')->where('piket', $row->piket)->where('tanggal', $date)->count();
+                // $data = DB::table('tb_piket')
+                // ->select(
+                //     DB::raw('count(*) as jumlah'),
+                //     'piket'
+                // )
+                // ->where('tanggal', $date)
+                // ->groupBy('piket')
+                // ->get();
+            }
+        }else{
+            $data = array();
         }
         
-        if($data){
+        if(count($data) != 0){
             foreach ($data as $row) {
                 if($row->piket == 'A'){
                     $row->text = 'Total Piket Hadir';

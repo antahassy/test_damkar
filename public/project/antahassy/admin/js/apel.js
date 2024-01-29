@@ -77,7 +77,8 @@ $(document).ready(function(){
                                       'Belum Di Submit</pre>'
                     });
                 }else{
-                    var result_content = '<div class="row">';
+                    var result_content = '<div class="row">' + 
+                    '<div class="col-md-12" style="font-style: italic; font-size: 14px; color: #007bff;">Klik text untuk detail</div>';
                     for(i = 0; i < data.length; i ++){
                         result_content +=
                         '<div class="col-md-6 list_count" data="' + data[i].piket + '" title="' + data[i].text + '">' +
