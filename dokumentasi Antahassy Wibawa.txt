@@ -2,8 +2,6 @@ Test aplikasi web programmer untuk pemadam provinsi jakarta dapat dijalankan pad
 http://test.antahassy.kencanasnack.com
 
 akses login
-username : administrator (role super admin)
-password : antahassywibawa
 
 username : pemimpin_kelompok (role pemimpin kelompok)
 password : 123456
